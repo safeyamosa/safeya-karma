@@ -1,0 +1,69 @@
+<div><h2>phones Listing</h2>
+
+<table class="table" ng-if="phones.length>0">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact No.</th>
+        <th>Job.</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="phone in phones">
+        <td>{{phone.name}}</td>
+        <td>{{phone.address}}</td>
+        <td>{{phone.contact}}</td>
+        <td>{{phone.job}}</td>
+        <td>
+            <a href="#" ng-click="edit(phone._id)">Edit</a> |
+            <a href="#" ng-click="deletephone(phone._id)">Delete</a>
+        </td>
+    </tr>
+</table>
+<div ng-if="phones.length==0">
+    No record found !!
+</div>
+</div>
+
+
+
+
+<h2 ng-show="phone._id!=null">Edit</h2>
+<h2 ng-hide="phone._id!=null">Create</h2>
+<hr>
+<form name="phoneForm" ng-submit="saveData(phone)" novalidate class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-2">Name</label>
+        <div class="col-md-10">
+            <input type="text" ng-model="phone.name" name="name" ng-required="true" class="form-control" />
+            <p ng-show="phoneForm.name.$error.required && (phoneForm.$submitted || phoneForm.name.$dirty)" class="text-danger">Please Enter Name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Address</label>
+        <div class="col-md-10">
+            <textarea name="address" ng-model="phone.address" ng-required="true" class="form-control"></textarea>
+            <p ng-show="phoneForm.address.$error.required && (phoneForm.$submitted || phoneForm.address.$dirty)" class="text-danger">Please Enter Address</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Contact No.</label>
+        <div class="col-md-10">
+            <input type="text" ng-model="phone.contact" name="contact" ng-required="true" class="form-control" />
+            <p ng-show="phoneForm.contact.$error.required && (phoneForm.$submitted || phoneForm.contact.$dirty)" class="text-danger">Please Enter Contact No.</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Job.</label>
+        <div class="col-md-10">
+            <input type="text" ng-model="phone.job" name="job" ng-required="true" class="form-control" />
+            <p ng-show="phoneForm.job.$error.required && (phoneForm.$submitted || phoneForm.job.$dirty)" class="text-danger">Please Enter Contact No.</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-primary" ng-show="phone._id!=null" />
+            <input type="submit" value="Save" class="btn btn-primary" ng-hide="phone._id!=null" />
+            <a href="#" ng-click="clearb()" class="btn btn-warning">Cancel</a>
+        </div>
+    </div>
+</form>
